@@ -13,6 +13,11 @@
 
 ---
 
+<!-- SCREENSHOT 1: Full App Overview -->
+<!-- Take a screenshot of the full app with a 4-node pipeline AFTER running it (so I/O previews are visible). -->
+<!-- Show: Sidebar on left, Pipeline Canvas in center with nodes + connectors, IOPanel on right with output. -->
+![Full App Overview](screenshots/01-full-app-overview.png)
+
 </div>
 
 ## 🎯 What is CipherStack?
@@ -34,6 +39,10 @@ Think of it as a **visual programming environment for encryption**: each node re
 - **Animated connectors** between nodes show data flow with traveling dot particles
 - **Character count badges** on connectors display intermediate data sizes
 
+<!-- SCREENSHOT 2: Pipeline Canvas Close-Up -->
+<!-- Crop to show 2-3 cipher nodes on the canvas with animated connectors and character count badges between them. -->
+![Pipeline Canvas](screenshots/02-pipeline-canvas.png)
+
 ### 🔄 Bidirectional Encryption Engine
 - **Encrypt** mode processes nodes top → bottom
 - **Decrypt** mode **automatically reverses** the pipeline (bottom → top) and applies each cipher's inverse function
@@ -49,16 +58,28 @@ Think of it as a **visual programming environment for encryption**: each node re
 - Characters that have been **mutated** by the cipher are highlighted in **cyan** (`#22d3ee`)
 - Unchanged characters remain muted — making it instantly visible *where* each algorithm affects the data
 
+<!-- SCREENSHOT 3: Visual Diff Close-Up -->
+<!-- Crop a single cipher node's I/O section showing INPUT vs OUTPUT side-by-side with cyan-highlighted changed characters. -->
+![Visual Diff Highlighter](screenshots/03-visual-diff.png)
+
 ### 💾 Pipeline Export / Import (JSON Serialization)
 - **Export** your current pipeline configuration as a downloadable `.json` file
 - **Import** previously saved pipelines to instantly reconstruct complex chains
 - Toast notifications confirm successful import or report errors
 - Pipeline files are human-readable and version-stamped
 
+<!-- SCREENSHOT 4: Export/Import -->
+<!-- Show two things: (a) The Export/Import buttons in the Navbar, and (b) a "Pipeline Imported" toast notification in the bottom-right corner. -->
+![Export & Import](screenshots/04-export-import.png)
+
 ### ℹ️ Interactive Cipher Descriptions
 - Each cipher node has a hoverable **info icon** (ℹ) in its header
 - Hovering reveals a **glassmorphism tooltip** with a detailed, academic-level explanation of how the algorithm works
 - Helps users understand the cryptographic principles behind each transformation
+
+<!-- SCREENSHOT 5: Cipher Info Tooltip -->
+<!-- Hover over the (i) info icon on any cipher node to show the glassmorphism tooltip with the cipher description. -->
+![Cipher Info Tooltip](screenshots/05-cipher-tooltip.png)
 
 ### ⚡ Pipeline Presets
 - **Classic Stack**: Caesar → XOR → Vigenère (3 nodes)
@@ -71,12 +92,20 @@ Think of it as a **visual programming environment for encryption**: each node re
 - Documents how new ciphers can be added with **zero UI rewrites** — just export `encrypt`/`decrypt` functions
 - Demonstrates professional-grade modularity to evaluators
 
+<!-- SCREENSHOT 6: Architecture Modal -->
+<!-- Click the ? button in the bottom-left to open the Engine Architecture modal. Screenshot the full modal with the dark overlay. -->
+![Architecture Modal](screenshots/06-architecture-modal.png)
+
 ### 🎨 Premium Dark UI
 - **Glassmorphism** and **backdrop blur** effects throughout
 - Custom **radial gradient** canvas ambience (subtle purple)
 - **Micro-animations**: node enter transitions, button press scaling, traveling connector dots, typewriter output effect
 - **Monospace code fonts** for all data displays
 - Custom scrollbars, recessed I/O panels, accent-colored node headers
+
+<!-- SCREENSHOT 7: Multi-Pass & IO Panel -->
+<!-- Show the right-side IOPanel with: input text, Encrypt/Decrypt toggle, Multi-Pass set to 3×, and the output with the green "Ready" badge. -->
+![IO Panel & Multi-Pass](screenshots/07-iopanel-multipass.png)
 
 ---
 
