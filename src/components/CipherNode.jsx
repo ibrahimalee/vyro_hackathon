@@ -2,7 +2,7 @@ import React from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import {
-  GripVertical, Copy, X, AlertCircle,
+  GripVertical, Copy, X, AlertCircle, Info,
   ArrowLeftRight, Shuffle, KeyRound, AlignJustify, Table2, Binary,
 } from "lucide-react";
 import { ciphers } from "../lib/ciphers";
@@ -67,6 +67,14 @@ export default function CipherNode({ node, result, onUpdate, onDuplicate, onDele
 
           <span style={{ fontSize: 13, fontWeight: 500, color: "#f4f4f5" }}>{c.label}</span>
 
+          <div className="group relative flex items-center">
+            <Info size={13} className="text-zinc-600 hover:text-zinc-400 cursor-help transition-colors" />
+            <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block w-52 p-2.5 bg-zinc-900/95 backdrop-blur-md border border-zinc-800 rounded-lg text-[11px] leading-relaxed text-zinc-400 shadow-2xl z-50 pointer-events-none">
+              <div className="font-semibold text-zinc-200 mb-1">{c.label}</div>
+              {c.description}
+            </div>
+          </div>
+
           <span
             key={previewText}
             className="node-enter"
@@ -126,7 +134,7 @@ export default function CipherNode({ node, result, onUpdate, onDuplicate, onDele
             ) : (
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
                 <IOCol label="INPUT" text={result.inputText} accent="rgba(139,92,246,0.3)" />
-                <IOCol label="OUTPUT" text={result.outputText} accent="rgba(34,211,238,0.3)" />
+                <IOCol label="OUTPUT" text={result.outputText} inputForDiff={result.inputText} accent="rgba(34,211,238,0.3)" />
               </div>
             )}
           </div>
@@ -165,8 +173,10 @@ function IconBtn({ children, onClick, title, hoverColor, hoverBg = "rgba(255,255
   );
 }
 
-function IOCol({ label, text, accent }) {
+function IOCol({ label, text, accent, inputForDiff }) {
   const t = truncateText(text || "", 120);
+  const inputT = inputForDiff ? truncateText(inputForDiff || "", 120) : null;
+
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
@@ -178,21 +188,39 @@ function IOCol({ label, text, accent }) {
         </span>
       </div>
       <div
-        className="font-mono shadow-inner bg-black/40"
+        className="font-mono shadow-inner bg-black/40 cs-scroll"
         style={{
           borderLeft: `2px solid ${accent}`,
           borderRadius: 6,
           padding: 8,
           minHeight: 48,
-          maxHeight: 80,
-          overflow: "hidden",
+          maxHeight: 120,
+          overflowY: "auto",
           fontSize: 11,
-          color: "#71717a",
+          color: "#a1a1aa",
           wordBreak: "break-all",
+          whiteSpace: "pre-wrap",
           lineHeight: 1.5,
         }}
       >
-        {t || <span style={{ color: "#2d2d30", fontStyle: "italic" }}>empty</span>}
+        {!t ? (
+          <span style={{ color: "#2d2d30", fontStyle: "italic" }}>empty</span>
+        ) : inputT ? (
+          t.split("").map((char, i) => {
+            const changed = inputT && inputT[i] !== char;
+            return (
+              <span
+                key={i}
+                className={changed ? "text-cyan-400 bg-cyan-400/20" : ""}
+                style={{ color: changed ? "#22d3ee" : "#71717a" }}
+              >
+                {char}
+              </span>
+            );
+          })
+        ) : (
+          t
+        )}
       </div>
     </div>
   );

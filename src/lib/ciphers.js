@@ -161,7 +161,7 @@ function b64Decrypt(text) {
 export const ciphers = {
   caesar: {
     label: "Caesar",
-    description: "Classic letter-shift cipher",
+    description: "A substitution cipher where each letter is shifted by a fixed position in the alphabet. Simple but foundational in cryptographic history.",
     icon: "ArrowLeftRight",
     color: "#8b5cf6",
     defaultConfig: { shift: 3 },
@@ -171,7 +171,7 @@ export const ciphers = {
   },
   xor: {
     label: "XOR",
-    description: "Byte-wise XOR with a key",
+    description: "Performs bitwise EXCLUSIVE OR between plaintext bytes and a repeating key. Crucial in modern stream ciphers for masking data.",
     icon: "Shuffle",
     color: "#22d3ee",
     defaultConfig: { key: "secret" },
@@ -181,7 +181,7 @@ export const ciphers = {
   },
   vigenere: {
     label: "Vigenère",
-    description: "Polyalphabetic keyword cipher",
+    description: "A method of encrypting alphabetic text using a series of interwoven Caesar ciphers based on the letters of a keyword.",
     icon: "KeyRound",
     color: "#f59e0b",
     defaultConfig: { keyword: "KEY" },
@@ -191,7 +191,7 @@ export const ciphers = {
   },
   railfence: {
     label: "Rail Fence",
-    description: "Zigzag transposition cipher",
+    description: "A form of transposition cipher that writes the message in a zigzag pattern on virtual 'rails' and then reads off each rail sequentially.",
     icon: "AlignJustify",
     color: "#4ade80",
     defaultConfig: { rails: 3 },
@@ -201,7 +201,7 @@ export const ciphers = {
   },
   columnar: {
     label: "Columnar",
-    description: "Keyword-ordered transposition",
+    description: "Transposition cipher where text is written in rows of a fixed width and then read column-by-column in an order derived from a keyword.",
     icon: "Table2",
     color: "#f87171",
     defaultConfig: { keyword: "ZEBRA" },
@@ -211,7 +211,7 @@ export const ciphers = {
   },
   base64: {
     label: "Base64",
-    description: "Binary-safe text encoding",
+    description: "An encoding scheme that represents binary data in an ASCII string format. Essential for transmitting data over text-only mediums.",
     icon: "Binary",
     color: "#a78bfa",
     defaultConfig: {},
